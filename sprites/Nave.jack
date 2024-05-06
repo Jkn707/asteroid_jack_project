@@ -1,0 +1,67 @@
+class Nave {
+
+    field int x, y;
+    
+    constructor Nave new(int px, int py){
+        let x = 256;
+        let y = py;
+        //Colocar la posición con coordenadas
+        do draw(y);
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void draw(int yy) {
+        var int memAddress; 
+        let memAddress = 16384+yy;
+        // column 0
+        do Memory.poke(memAddress, 224);
+        do Memory.poke(memAddress +32, 96);
+        do Memory.poke(memAddress +64, 224);
+        do Memory.poke(memAddress +96, 480);
+        do Memory.poke(memAddress +128, 32760);
+        do Memory.poke(memAddress +160, -4);
+        do Memory.poke(memAddress +192, -4);
+        do Memory.poke(memAddress +224, -4);
+        do Memory.poke(memAddress +256, 32760);
+        do Memory.poke(memAddress +288, 480);
+        do Memory.poke(memAddress +320, 224);
+        do Memory.poke(memAddress +352, 96);
+        do Memory.poke(memAddress +384, 224);
+        // column 1
+        do Memory.poke(memAddress +193, 1);
+        return;
+    }
+
+    method void borrar(){
+        var int memAddress; 
+        //y*32 + x/16 -> 16384 + conversor (x, y)
+        //let memAddress = 16384+location;
+        let memAddress = 16384;
+        // column 0
+        do Memory.poke(memAddress, 0);
+        do Memory.poke(memAddress +32, 0);
+        do Memory.poke(memAddress +64, 0);
+        do Memory.poke(memAddress +96, 0);
+        do Memory.poke(memAddress +128,0 );
+        do Memory.poke(memAddress +160,0 );
+        do Memory.poke(memAddress +192, 0);
+        do Memory.poke(memAddress +224,0 );
+        do Memory.poke(memAddress +256, 0);
+        do Memory.poke(memAddress +288, 0);
+        do Memory.poke(memAddress +320, 0);
+        do Memory.poke(memAddress +352, 0);
+        do Memory.poke(memAddress +384, 0);
+        // column 1
+        do Memory.poke(memAddress +193, 0);
+        return;
+    }
+
+}
+
+
+

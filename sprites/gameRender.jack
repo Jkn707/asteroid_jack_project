@@ -1,0 +1,66 @@
+class gameRender {
+    field controlesNave figura;
+    field int direccion;
+
+    constructor gameRender new() {
+        let figura = controlesNave.new(10, 10, 10);
+        let direccion = 0;
+        return this;
+    }
+
+    method void dispose() {
+        do figura.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void moverFigura() {
+        if (direccion = 1) {
+            do figura.moveArriba();
+        }
+        if (direccion = 2) {
+            do figura.moveAbajo();
+        }
+        if (direccion = 3) {
+            do figura.moveIzq();
+        }
+        if (direccion = 4) {
+            do figura.moveDer();
+        }
+        do Sys.wait(5);  //espera 5 seg
+        return;
+    }
+
+    method void run() {
+        var char tecla;
+        var boolean exit;
+        let exit = false;
+        
+        while (~exit){
+            while (tecla = 0) {
+                let tecla = Keyboard.keyPressed();
+            }
+            if (tecla = 81) {  //letra Q  QUIT
+                let exit = true;
+            }
+            if (tecla = 131) {  //letra up
+                let direccion = 1;
+            }
+            if (tecla = 133) {  //letra down
+                let direccion = 2;
+            }
+            if (tecla = 130) {  //letra left
+                let direccion = 3;
+            }
+            if (tecla = 132) {  //letra right
+                let direccion = 4;
+            }
+
+            while (~(tecla = 0)) {
+                let tecla = Keyboard.keyPressed();
+                do moverFigura();
+            }
+        }
+        return;
+    }
+}
