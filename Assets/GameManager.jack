@@ -17,7 +17,9 @@ class GameManager {
 
     constructor GameManager new()
     {
-        let running = false;
+        do Screen.clearScreen();
+
+        let running = true;
         return this;
     }
     method void dispose() {
@@ -26,13 +28,13 @@ class GameManager {
     }
 
     method void run() {
-        var char tecla;
+        var char key;
         let running = true;
         
         // Game Loop
         while (running)
         {
-            do drawTestShip(100);
+            //do drawTestShip(100);
             do Screen.clearScreen();
         }
 

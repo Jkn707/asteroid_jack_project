@@ -22,11 +22,15 @@ if-goto WHILE_END0
 push local 0
 push static 3
 add
-push static 1
+push static 2
 pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
+push local 0
+push constant 1
+add
+pop local 0
 goto WHILE_EXP0
 label WHILE_END0
 push constant 0

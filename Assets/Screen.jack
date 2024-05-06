@@ -1,3 +1,11 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/12/Screen.jack
+
+/**
+ * Graphic screen library.
+ */
 class Screen {
 
 	static boolean whitePixel;
@@ -19,7 +27,8 @@ class Screen {
     	var int i;
 		let i = 0;
 		while (i < 8192) {
-			let screen[i] = blackPixel;
+			let screen[i] = color;
+			let i = i + 1;
 		}
 		return;
 	}
