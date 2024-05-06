@@ -1,0 +1,16 @@
+class GameSprite {
+
+    field int x, y;
+
+    method void Instantiate(int xPos, int yPos)
+    {
+        //GameRenderer.sprites
+        return;
+    }
+
+    method void dispose()
+    {
+        do Memory.deAlloc(this);
+        return;
+    }
+}

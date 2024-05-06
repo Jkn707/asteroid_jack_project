@@ -1,0 +1,70 @@
+class GameManager {
+
+    // Singleton and functions
+    field boolean running;
+    static GameManager instance;
+
+    
+    function void newInstance() {
+        let instance = GameManager.new();
+        return;
+    }
+    function GameManager getInstance() {
+        return instance;
+    }
+    // End of Singleton and functions
+    
+
+    constructor GameManager new()
+    {
+        let running = false;
+        return this;
+    }
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void run() {
+        var char tecla;
+        let running = true;
+        
+        // Game Loop
+        while (running)
+        {
+            do drawTestShip(100);
+            do Screen.clearScreen();
+        }
+
+        return;
+    }
+
+    method void stop()
+    {
+        let running = false;
+        return;
+    }
+
+    method void drawTestShip(int yy)
+    {
+        //var int memAddress; 
+        //let memAddress = 16384+yy;
+        //// column 0
+        //do Memory.poke(memAddress, 224);
+        //do Memory.poke(memAddress +32, 96);
+        //do Memory.poke(memAddress +64, 224);
+        //do Memory.poke(memAddress +96, 480);
+        //do Memory.poke(memAddress +128, 32760);
+        //do Memory.poke(memAddress +160, -4);
+        //do Memory.poke(memAddress +192, -4);
+        //do Memory.poke(memAddress +224, -4);
+        //do Memory.poke(memAddress +256, 32760);
+        //do Memory.poke(memAddress +288, 480);
+        //do Memory.poke(memAddress +320, 224);
+        //do Memory.poke(memAddress +352, 96);
+        //do Memory.poke(memAddress +384, 224);
+        //// column 1
+        //do Memory.poke(memAddress +193, 1);
+        return;
+    }
+}

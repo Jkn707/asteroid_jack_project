@@ -1,0 +1,12 @@
+class Main {
+    function void main(){
+        var GameManager game;
+
+	    do GameManager.newInstance();
+        let game = GameManager.getInstance();
+        do game.run();
+	    do game.dispose();
+
+        return;
+    }
+}
