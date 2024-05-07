@@ -6,9 +6,10 @@ class controlesNave {
     constructor controlesNave new(int Ax, int Ay, int Asize) {
         let x = Ax;
         let y = Ay;
-        //let nave = Nave.new(x, y, size, size - 5);
         let nave = Nave.new(x, y);
-        do draw(y);
+        
+        //let nave = Nave.new(x, y, size, size - 5);
+        do draw(x, y);
         return this;
     }
 
@@ -17,16 +18,16 @@ class controlesNave {
         return;
     }
 
-    method void draw(int y) {
+    method void draw(int x, int y) {
         //do nave.draw(x, y, size);
-        do nave.draw(y);
+        do nave.draw(x, y);
         return;
     }
 
     method void borrar() {
         //do Screen.setColor(false);
         //do Screen.drawRectangle(x, y, x + size, y + size);
-        do nave.borrar();
+        do nave.borrar(y);
         return;
     }
     
@@ -35,7 +36,7 @@ class controlesNave {
         if (y > 1){
             let y = y - 1;
             //do nave.draw(x, y, size);
-            do nave.draw(y);
+            do nave.draw(x, y);
         }
         return;
     }
@@ -44,7 +45,7 @@ class controlesNave {
         if ((y + size) < 254){
             let y = y + 1;
             //do nave.draw(x, y, size);
-            do nave.draw(y);
+            do nave.draw(x, y);
         }
         return;
     }
@@ -53,7 +54,7 @@ class controlesNave {
         if (y > 1){
             let x = x - 1;
             //do nave.draw(x, y, size);
-            do nave.draw(256);
+            do nave.draw(x, y);
         }
         return;
     }
@@ -62,7 +63,7 @@ class controlesNave {
         if ((x + size) < 510){
             let x = x + 1;
             //do nave.draw(x, y, size);
-            do nave.draw(256);
+            do nave.draw(x, y);
         }
         return;
     }

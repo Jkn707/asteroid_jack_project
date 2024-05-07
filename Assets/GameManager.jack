@@ -22,10 +22,7 @@ class GameManager {
         let running = true;
         return this;
     }
-    method void dispose() {
-        do Memory.deAlloc(this);
-        return;
-    }
+    
 
     method void run() {
         var char key;
@@ -40,6 +37,11 @@ class GameManager {
 
         return;
     }
+    
+    method void dispose() {
+            do Memory.deAlloc(this);
+            return;
+        }
 
     method void stop()
     {

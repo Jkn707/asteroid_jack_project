@@ -1,12 +1,13 @@
 class Nave {
 
     field int x, y;
+    static Array screen;
     
     constructor Nave new(int px, int py){
-        let x = 256;
+        let x = px;
         let y = py;
         //Colocar la posición con coordenadas
-        do draw(y);
+        do draw(x, y);
         return this;
     }
 
@@ -15,9 +16,15 @@ class Nave {
         return;
     }
 
-    method void draw(int yy) {
-        var int memAddress; 
-        let memAddress = 16384+yy;
+    method void draw(int xx, int yy) {
+        var int posConvert;
+        var int memAddress;
+
+        do borrar(yy);
+
+        let posConvert = convertPos(xx, yy);
+        let memAddress = 16384 + posConvert;
+        
         // column 0
         do Memory.poke(memAddress, 224);
         do Memory.poke(memAddress +32, 96);
@@ -37,12 +44,13 @@ class Nave {
         return;
     }
 
-    method void borrar(){
+    method void borrar(int yy){
         var int memAddress; 
-        //y*32 + x/16 -> 16384 + conversor (x, y)
-        //let memAddress = 16384+location;
-        let memAddress = 16384;
-        // column 0
+        do Screen.setColor(false);
+            //y*32 + x/16 -> 16384 + conversor (x, y)
+            //let memAddress = 16384+location;
+        let memAddress = 16384 + convertPos(1, yy);
+            // column 0
         do Memory.poke(memAddress, 0);
         do Memory.poke(memAddress +32, 0);
         do Memory.poke(memAddress +64, 0);
@@ -58,10 +66,17 @@ class Nave {
         do Memory.poke(memAddress +384, 0);
         // column 1
         do Memory.poke(memAddress +193, 0);
+        do dispose();
         return;
     }
 
+    method int convertPos(int xx, int yy){
+        //return yy*32 + x/16;
+        return yy*32 + xx/16;
+    }
+
+    
+
+
 }
-
-
 

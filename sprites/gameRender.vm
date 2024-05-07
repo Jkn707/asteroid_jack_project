@@ -2,25 +2,14 @@ function gameRender.new 0
 push constant 2
 call Memory.alloc 1
 pop pointer 0
-push constant 10
-push constant 10
-push constant 10
+push constant 1
+push constant 70
+push constant 15
 call controlesNave.new 3
 pop this 0
 push constant 0
 pop this 1
 push pointer 0
-return
-function gameRender.dispose 0
-push argument 0
-pop pointer 0
-push this 0
-call controlesNave.dispose 1
-pop temp 0
-push pointer 0
-call Memory.deAlloc 1
-pop temp 0
-push constant 0
 return
 function gameRender.moverFigura 0
 push argument 0
@@ -152,5 +141,16 @@ goto WHILE_EXP2
 label WHILE_END2
 goto WHILE_EXP0
 label WHILE_END0
+push constant 0
+return
+function gameRender.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call controlesNave.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
 push constant 0
 return

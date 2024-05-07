@@ -3,15 +3,9 @@ class gameRender {
     field int direccion;
 
     constructor gameRender new() {
-        let figura = controlesNave.new(10, 10, 10);
+        let figura = controlesNave.new(1, 70, 15);
         let direccion = 0;
         return this;
-    }
-
-    method void dispose() {
-        do figura.dispose();
-        do Memory.deAlloc(this);
-        return;
     }
 
     method void moverFigura() {
@@ -61,6 +55,12 @@ class gameRender {
                 do moverFigura();
             }
         }
+        return;
+    }
+
+    method void dispose() {
+        do figura.dispose();
+        do Memory.deAlloc(this);
         return;
     }
 }
