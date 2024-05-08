@@ -1,9 +1,11 @@
 class gameRender {
     field Nave figura;
+    field AsteroidHoled asteriode;
     field int direccion;
 
     constructor gameRender new() {
         let figura = Nave.new(10, 50, 30);
+        let asteriode = AsteroidHoled.new(10, 20, 30);
         let direccion = 0;
         return this;
     }

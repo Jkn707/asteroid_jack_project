@@ -2,13 +2,14 @@ class Nave {
 
     field int x, y;
     field int size;
-
+    field boolean pointLeft;
+    
     
     constructor Nave new(int px, int py, int sizeb) {
         let x = px;
         let y = py;
         let size = sizeb;
-        
+
         do draw();
         
         return this;
@@ -22,35 +23,56 @@ class Nave {
 
     method void moveArriba() {
         if (y > 1) {
-            do borrar(); // Borra la nave de su posición actual
+            /*do borrar(); // Borra la nave de su posición actual
             let y = y- 1; // Actualiza la coordenada y
             do draw(); // Dibuja la nave en la nueva posición
+            */
+
+            if(pointLeft){
+                do borrar(); 
+                let y = y - 1; 
+                do drawLeft(); 
+            }else{
+                do borrar();  
+                let y = y - 1; 
+                do draw(); 
+            }
         }
         return;
     }
 
     method void moveAbajo() {
         if ((y + size) < 254) {
-            do borrar(); 
-            let y = y+ 1; 
-            do draw(); 
+            if(pointLeft){
+                do borrar();  
+                let y = y+ 1; 
+                do drawLeft(); 
+            }else{
+                do borrar(); 
+                let y = y + 1; 
+                do draw(); 
+               
+            }
+           
         }
         return;
     }
 
     method void moveIzq() {
         if (x > 1) {
+            let pointLeft = true;
+
             do borrar(); 
-            let x = x - 1; 
-            do draw();
+            do drawLeft();
         }
         return;
     }
 
     method void moveDer() {
         if ((x + size) < 510) {
-            do borrar(); 
-            let x = x + 1; 
+            let pointLeft = false;
+            
+            do borrarLeft(); 
             do draw(); 
         }
         return;
@@ -107,6 +129,65 @@ class Nave {
         do Memory.poke(memAddress +384, 0);
         // column 1
         do Memory.poke(memAddress +193, 0);
+        return;
+    }
+
+
+    method void drawLeft(){
+        var int posConvert;
+        var int memAddress;
+
+        let posConvert = convertPos(x, y);
+        let memAddress = 16384 + posConvert + 15;
+        
+        do Screen.setColor(true);
+        // column 0
+        do Memory.poke(memAddress, 14336);
+        do Memory.poke(memAddress +32, 12288);
+        do Memory.poke(memAddress +64, 14336);
+        do Memory.poke(memAddress +96, 15360);
+        do Memory.poke(memAddress +128, -16);
+        do Memory.poke(memAddress +160, -8);
+        do Memory.poke(memAddress +192, -4);
+        do Memory.poke(memAddress +224, -8);
+        do Memory.poke(memAddress +256, -16);
+        do Memory.poke(memAddress +288, 15360);
+        do Memory.poke(memAddress +320, 14336);
+        do Memory.poke(memAddress +352, 12288);
+        do Memory.poke(memAddress +384, 14336);
+        // column 1
+        do Memory.poke(memAddress +161, 1);
+        do Memory.poke(memAddress +193, 1);
+        do Memory.poke(memAddress +225, 1);
+        return;
+    }
+
+    method void borrarLeft(){
+        var int posConvert;
+        var int memAddress; 
+
+        let posConvert = convertPos(x, y);
+        let memAddress = 16384 + posConvert +15;
+
+        do Screen.setColor(true);
+        // column 0
+        do Memory.poke(memAddress, 14336);
+        do Memory.poke(memAddress +32, 12288);
+        do Memory.poke(memAddress +64, 14336);
+        do Memory.poke(memAddress +96, 15360);
+        do Memory.poke(memAddress +128, -16);
+        do Memory.poke(memAddress +160, -8);
+        do Memory.poke(memAddress +192, -4);
+        do Memory.poke(memAddress +224, -8);
+        do Memory.poke(memAddress +256, -16);
+        do Memory.poke(memAddress +288, 15360);
+        do Memory.poke(memAddress +320, 14336);
+        do Memory.poke(memAddress +352, 12288);
+        do Memory.poke(memAddress +384, 14336);
+        // column 1
+        do Memory.poke(memAddress +161, 1);
+        do Memory.poke(memAddress +193, 1);
+        do Memory.poke(memAddress +225, 1);
         return;
     }
 
