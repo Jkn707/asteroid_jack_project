@@ -8,9 +8,9 @@ push constant 30
 call Nave.new 3
 pop this 0
 push constant 10
-push constant 20
+push constant 10
 push constant 30
-call AsteroidHoled.new 3
+call Asteroid.new 3
 pop this 1
 push constant 0
 pop this 2
@@ -80,6 +80,9 @@ push constant 0
 eq
 not
 if-goto WHILE_END1
+push this 1
+call Asteroid.moveAsteroide 1
+pop temp 0
 call Keyboard.keyPressed 0
 pop local 0
 goto WHILE_EXP1
@@ -137,11 +140,14 @@ eq
 not
 not
 if-goto WHILE_END2
-call Keyboard.keyPressed 0
-pop local 0
 push pointer 0
 call gameRender.moverFigura 1
 pop temp 0
+push this 1
+call Asteroid.moveAsteroide 1
+pop temp 0
+call Keyboard.keyPressed 0
+pop local 0
 goto WHILE_EXP2
 label WHILE_END2
 goto WHILE_EXP0
@@ -153,6 +159,9 @@ push argument 0
 pop pointer 0
 push this 0
 call Nave.dispose 1
+pop temp 0
+push this 1
+call Asteroid.dispose 1
 pop temp 0
 push pointer 0
 call Memory.deAlloc 1

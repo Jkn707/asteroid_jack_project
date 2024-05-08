@@ -1,11 +1,11 @@
 class gameRender {
     field Nave figura;
-    field AsteroidHoled asteriode;
+    field Asteroid asteroide;
     field int direccion;
 
     constructor gameRender new() {
         let figura = Nave.new(10, 50, 30);
-        let asteriode = AsteroidHoled.new(10, 20, 30);
+        let asteroide = Asteroid.new(10, 10, 30);
         let direccion = 0;
         return this;
     }
@@ -32,8 +32,10 @@ class gameRender {
         var boolean exit;
         let exit = false;
         
+
         while (~exit){
             while (tecla = 0) {
+                do asteroide.moveAsteroide();
                 let tecla = Keyboard.keyPressed();
             }
             if (tecla = 81) {  //letra Q  QUIT
@@ -53,8 +55,9 @@ class gameRender {
             }
 
             while (~(tecla = 0)) {
-                let tecla = Keyboard.keyPressed();
                 do moverFigura();
+                do asteroide.moveAsteroide();
+                let tecla = Keyboard.keyPressed();
             }
         }
         return;
@@ -62,6 +65,7 @@ class gameRender {
 
     method void dispose() {
         do figura.dispose();
+        do asteroide.dispose();
         do Memory.deAlloc(this);
         return;
     }

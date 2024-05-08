@@ -1,5 +1,5 @@
-function AsteroidHoled.new 0
-push constant 3
+function Asteroid.new 0
+push constant 4
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -8,27 +8,72 @@ push argument 1
 pop this 1
 push argument 2
 pop this 2
+push constant 1
+pop this 3
 push pointer 0
-call AsteroidHoled.draw 1
-pop temp 0
-push pointer 0
-call AsteroidHoled.draw1 1
-pop temp 0
-push pointer 0
-call AsteroidHoled.draw2 1
+call Asteroid.draw 1
 pop temp 0
 push pointer 0
 return
-function AsteroidHoled.draw 2
+function Asteroid.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Asteroid.moveAsteroide 0
+push argument 0
+pop pointer 0
+push constant 5
+call Sys.wait 1
+pop temp 0
+push pointer 0
+call Asteroid.borrar 1
+pop temp 0
+push this 1
+push this 2
+add
+push constant 230
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 1
+push constant 1
+add
+pop this 1
+push pointer 0
+call Asteroid.draw 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 0
+push constant 2
+add
+pop this 0
+push constant 10
+pop this 1
+push this 3
+push constant 2
+add
+pop this 3
+label IF_END0
+push constant 0
+return
+function Asteroid.draw 2
 push argument 0
 pop pointer 0
 push pointer 0
 push this 0
 push this 1
-call AsteroidHoled.convertPos 3
+call Asteroid.convertPos 3
 pop local 0
 push constant 16384
 push local 0
+add
+push this 3
 add
 pop local 1
 push constant 0
@@ -301,13 +346,282 @@ call Memory.poke 2
 pop temp 0
 push constant 0
 return
-function AsteroidHoled.draw1 2
+function Asteroid.borrar 2
 push argument 0
 pop pointer 0
 push pointer 0
 push this 0
 push this 1
-call AsteroidHoled.convertPos 3
+call Asteroid.convertPos 3
+pop local 0
+push constant 16384
+push local 0
+add
+push this 3
+add
+pop local 1
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push local 1
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 512
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 544
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 576
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 608
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 640
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 223
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 1
+sub
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 31
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 63
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 95
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 127
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 159
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 191
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 255
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 287
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 319
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 351
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 383
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 415
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 447
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 479
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 511
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 543
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 575
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 607
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 1
+push constant 639
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Asteroid.draw1 2
+push argument 0
+pop pointer 0
+push pointer 0
+push this 0
+push this 1
+call Asteroid.convertPos 3
 pop local 0
 push constant 16384
 push local 0
@@ -902,13 +1216,13 @@ call Memory.poke 2
 pop temp 0
 push constant 0
 return
-function AsteroidHoled.draw2 2
+function Asteroid.draw2 2
 push argument 0
 pop pointer 0
 push pointer 0
 push this 0
 push this 1
-call AsteroidHoled.convertPos 3
+call Asteroid.convertPos 3
 pop local 0
 push constant 16384
 push local 0
@@ -1497,14 +1811,10 @@ call Memory.poke 2
 pop temp 0
 push constant 0
 return
-function AsteroidHoled.convertPos 0
+function Asteroid.convertPos 0
 push argument 0
 pop pointer 0
 push this 1
 push constant 32
 call Math.multiply 2
-push this 0
-add
-push constant 16
-call Math.divide 2
 return
