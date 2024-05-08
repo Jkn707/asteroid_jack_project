@@ -1,13 +1,16 @@
 class Nave {
 
     field int x, y;
-    static Array screen;
+    field int size;
+
     
-    constructor Nave new(int px, int py){
+    constructor Nave new(int px, int py, int sizeb) {
         let x = px;
         let y = py;
-        //Colocar la posición con coordenadas
-        do draw(x, y);
+        let size = sizeb;
+        
+        do draw();
+        
         return this;
     }
 
@@ -16,15 +19,51 @@ class Nave {
         return;
     }
 
-    method void draw(int xx, int yy) {
+
+    method void moveArriba() {
+        if (y > 1) {
+            do borrar(); // Borra la nave de su posición actual
+            let y = y- 1; // Actualiza la coordenada y
+            do draw(); // Dibuja la nave en la nueva posición
+        }
+        return;
+    }
+
+    method void moveAbajo() {
+        if ((y + size) < 254) {
+            do borrar(); 
+            let y = y+ 1; 
+            do draw(); 
+        }
+        return;
+    }
+
+    method void moveIzq() {
+        if (x > 1) {
+            do borrar(); 
+            let x = x - 1; 
+            do draw();
+        }
+        return;
+    }
+
+    method void moveDer() {
+        if ((x + size) < 510) {
+            do borrar(); 
+            let x = x + 1; 
+            do draw(); 
+        }
+        return;
+    }
+
+    method void draw() {
         var int posConvert;
         var int memAddress;
 
-        do borrar(yy);
-
-        let posConvert = convertPos(xx, yy);
-        let memAddress = 16384 + posConvert;
+        let posConvert = convertPos(x, y);
+        let memAddress = 16384 + posConvert + 15;
         
+        do Screen.setColor(true);
         // column 0
         do Memory.poke(memAddress, 224);
         do Memory.poke(memAddress +32, 96);
@@ -44,21 +83,23 @@ class Nave {
         return;
     }
 
-    method void borrar(int yy){
+    method void borrar(){
+        var int posConvert;
         var int memAddress; 
+
+        let posConvert = convertPos(x, y);
+        let memAddress = 16384 + posConvert +15;
+
         do Screen.setColor(false);
-            //y*32 + x/16 -> 16384 + conversor (x, y)
-            //let memAddress = 16384+location;
-        let memAddress = 16384 + convertPos(1, yy);
-            // column 0
+        // column 0
         do Memory.poke(memAddress, 0);
         do Memory.poke(memAddress +32, 0);
         do Memory.poke(memAddress +64, 0);
         do Memory.poke(memAddress +96, 0);
-        do Memory.poke(memAddress +128,0 );
-        do Memory.poke(memAddress +160,0 );
+        do Memory.poke(memAddress +128, 0);
+        do Memory.poke(memAddress +160, 0);
         do Memory.poke(memAddress +192, 0);
-        do Memory.poke(memAddress +224,0 );
+        do Memory.poke(memAddress +224, 0);
         do Memory.poke(memAddress +256, 0);
         do Memory.poke(memAddress +288, 0);
         do Memory.poke(memAddress +320, 0);
@@ -66,17 +107,14 @@ class Nave {
         do Memory.poke(memAddress +384, 0);
         // column 1
         do Memory.poke(memAddress +193, 0);
-        do dispose();
         return;
     }
 
     method int convertPos(int xx, int yy){
         //return yy*32 + x/16;
-        return yy*32 + xx/16;
+        return yy*32;
     }
-
-    
-
-
 }
+
+
 

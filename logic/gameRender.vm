@@ -2,10 +2,10 @@ function gameRender.new 0
 push constant 2
 call Memory.alloc 1
 pop pointer 0
-push constant 1
-push constant 70
-push constant 15
-call controlesNave.new 3
+push constant 10
+push constant 50
+push constant 30
+call Nave.new 3
 pop this 0
 push constant 0
 pop this 1
@@ -21,7 +21,7 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push this 0
-call controlesNave.moveArriba 1
+call Nave.moveArriba 1
 pop temp 0
 label IF_FALSE0
 push this 1
@@ -31,7 +31,7 @@ if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push this 0
-call controlesNave.moveAbajo 1
+call Nave.moveAbajo 1
 pop temp 0
 label IF_FALSE1
 push this 1
@@ -41,7 +41,7 @@ if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
 push this 0
-call controlesNave.moveIzq 1
+call Nave.moveIzq 1
 pop temp 0
 label IF_FALSE2
 push this 1
@@ -51,7 +51,7 @@ if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
 push this 0
-call controlesNave.moveDer 1
+call Nave.moveDer 1
 pop temp 0
 label IF_FALSE3
 push constant 5
@@ -147,7 +147,7 @@ function gameRender.dispose 0
 push argument 0
 pop pointer 0
 push this 0
-call controlesNave.dispose 1
+call Nave.dispose 1
 pop temp 0
 push pointer 0
 call Memory.deAlloc 1

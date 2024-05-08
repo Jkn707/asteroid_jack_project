@@ -1,9 +1,9 @@
 class gameRender {
-    field controlesNave figura;
+    field Nave figura;
     field int direccion;
 
     constructor gameRender new() {
-        let figura = controlesNave.new(1, 70, 15);
+        let figura = Nave.new(10, 50, 30);
         let direccion = 0;
         return this;
     }

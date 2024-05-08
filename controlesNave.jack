@@ -1,0 +1,36 @@
+class controlesNave {
+    field int x, y;
+    field int size;
+    field Nave nave;
+
+    constructor controlesNave new(int Ax, int Ay, int Asize) {
+        let x = Ax;
+        let y = Ay;
+        let nave = Nave.new(x, y);
+        
+        //let nave = Nave.new(x, y, size, size - 5);
+        do draw(x, y);
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void draw(int x, int y) {
+        //do nave.draw(x, y, size);
+        do nave.draw(x, y);
+        return;
+    }
+
+    method void borrar() {
+        //do Screen.setColor(false);
+        //do Screen.drawRectangle(x, y, x + size, y + size);
+        do nave.borrar(x,y);
+        return;
+    }
+    
+
+    
+}
