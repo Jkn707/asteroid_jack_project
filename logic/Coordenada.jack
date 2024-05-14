@@ -1,0 +1,28 @@
+class Coordenada {
+    field int x, y;
+
+    constructor Coordenada new(int px, int py) {
+        let x = px;
+        let y = py;
+        
+        return this;
+    }
+
+    method void setX(int px) {
+        let x = px;
+        return;
+    }
+
+    method void setY(int py) {
+        let y = py;
+        return;
+    }
+
+    method int getX() {
+        return x;
+    }
+
+    method int getY() {
+        return y;
+    }
+}

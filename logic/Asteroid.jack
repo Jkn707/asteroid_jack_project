@@ -25,6 +25,7 @@ class Asteroid{
         return;
     }
 
+
     method void moveAsteroide(){
         do Sys.wait(5); 
         do borrar();

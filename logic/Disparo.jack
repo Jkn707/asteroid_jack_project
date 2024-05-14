@@ -1,0 +1,32 @@
+class Disparo {
+
+    field int x, y;
+    field int col;
+
+    constructor Disparo new(int px, int py){
+        let x = px;
+        let y = py;
+        let col = 1;
+
+        do draw();
+    }
+
+    method void dispose(){
+       do memory.deAlloc(this);
+       return;
+    }
+
+    method void draw(){
+        var int posConvert;
+        var int memAddress;
+
+        let posConvert = convertPos(x, y);
+        let memAddress = 16384 + posConvert + 15;
+        
+        do Screen.setColor(true);
+        do Memory.poke(memAddress, 3);
+	    do Memory.poke(memAddress +32, 3);
+        
+        return;
+    }
+}

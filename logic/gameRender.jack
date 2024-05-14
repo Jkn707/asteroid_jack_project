@@ -1,7 +1,9 @@
 class gameRender {
     field Nave figura;
     field Asteroid asteroide;
+    field Disparo disparo;
     field int direccion;
+    field Coordenada coord;
 
     constructor gameRender new() {
         let figura = Nave.new(10, 50, 30);
@@ -37,6 +39,11 @@ class gameRender {
             while (tecla = 0) {
                 do asteroide.moveAsteroide();
                 let tecla = Keyboard.keyPressed();
+            }
+            if (tecla = 32) {  //Space -> Shoot
+                let coordX = nave.getPosition().getX();
+                let coordY = nave.getPosition().getY();
+                let disparo = Disparo.new(coordX, coordY);
             }
             if (tecla = 81) {  //letra Q  QUIT
                 let exit = true;

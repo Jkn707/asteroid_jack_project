@@ -3,15 +3,16 @@ class Nave {
     field int x, y;
     field int size;
     field boolean pointLeft;
-    
+    field Coordenada coordinates;
     
     constructor Nave new(int px, int py, int sizeb) {
         let x = px;
         let y = py;
         let size = sizeb;
 
+        let coordinates = Coordenada.new(px, py);
         do draw();
-        
+
         return this;
     }
 
@@ -20,13 +21,12 @@ class Nave {
         return;
     }
 
+    method Coordenada getPosition(){
+        return coordinates;
+    }
 
     method void moveArriba() {
         if (y > 1) {
-            /*do borrar(); // Borra la nave de su posición actual
-            let y = y- 1; // Actualiza la coordenada y
-            do draw(); // Dibuja la nave en la nueva posición
-            */
 
             if(pointLeft){
                 do borrarLeft(); 
