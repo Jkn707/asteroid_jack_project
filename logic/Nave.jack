@@ -21,8 +21,32 @@ class Nave {
         return;
     }
 
-    method Coordenada getPosition(){
+    /*method Coordenada getPosition(){
         return coordinates;
+    }*/
+
+    method int getX(){
+        return x;
+    }
+    method int getY(){
+        return y;
+    }
+
+    method void moverNave(int direccion) {
+        if (direccion = 1) {
+            do moveArriba();
+        }
+        if (direccion = 2) {
+            do moveAbajo();
+        }
+        if (direccion = 3) {
+            do moveIzq();
+        }
+        if (direccion = 4) {
+            do moveDer();
+        }
+        do Sys.wait(5);  //espera 5 seg
+        return;
     }
 
     method void moveArriba() {
