@@ -17,13 +17,17 @@ class Disparo {
        return;
     }
 
-     method void move() {
-        if (x > 1) {
+    method void move() {
+        //if (x > 1) {
             do borrar(); 
             do draw();
-            let x = x+1;
-        }
+            let x = x-1;
+        //}
         return;
+    }
+
+    method int convertPos(){
+        return y*32;
     }
 
 
@@ -41,7 +45,8 @@ class Disparo {
         var int memAddress;
 
         let posConvert = convertPos();
-        let memAddress = 16384 + posConvert;
+        // Inicialmente poniendo el disparo en la mitad de la pantalla
+        let memAddress = 16384 + posConvert + x + 4;
         
         do Screen.setColor(true);
         do Memory.poke(memAddress, 3);
@@ -55,7 +60,9 @@ class Disparo {
         var int memAddress; 
 
         let posConvert = convertPos();
-        let memAddress = 16384 + (x-1/16) ;
+        let memAddress = 16384 + posConvert + x + 5 ;
+
+        //let memAddress = 16384 + (x-1/16) ;
 
         do Screen.setColor(false);
         do Memory.poke(memAddress, 0);
@@ -65,9 +72,5 @@ class Disparo {
         return;
     }
 
-    method int convertPos(){
-        //return yy*32 + x/16;
-        //return x*32 + y/16;
-        return x/16;
-    }
+   
 }

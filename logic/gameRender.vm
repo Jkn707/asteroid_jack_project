@@ -1,5 +1,5 @@
 function gameRender.new 0
-push constant 11
+push constant 10
 call Memory.alloc 1
 pop pointer 0
 push constant 10
@@ -58,12 +58,12 @@ not
 pop this 3
 push this 0
 call Nave.getX 1
-pop this 6
+pop this 5
 push this 0
 call Nave.getY 1
-pop this 7
+pop this 6
+push this 5
 push this 6
-push this 7
 call Disparo.new 2
 pop this 2
 label IF_FALSE1
@@ -133,6 +133,9 @@ goto IF_FALSE7
 label IF_TRUE7
 push this 2
 call Disparo.move 1
+pop temp 0
+push constant 5
+call Sys.wait 1
 pop temp 0
 label IF_FALSE7
 call Keyboard.keyPressed 0

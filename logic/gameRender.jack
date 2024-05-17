@@ -4,7 +4,6 @@ class gameRender {
     field Disparo disparo;
     field boolean is_shooting;
     field int direccion;
-    field Coordenada coord;
     field int coordX;
     field int coordY;
     field int tempX;
@@ -57,11 +56,13 @@ class gameRender {
             }
 
             while (~(tecla = 0)) {
+                
                 do nave.moverNave(direccion);
                 do asteroide.moveAsteroide();
 
                 if(is_shooting){
                     do disparo.move();
+                    do Sys.wait(5);
                 }
 
                 /*if(disparo){
@@ -83,6 +84,15 @@ class gameRender {
         }
         return;
     }
+
+    /*function void moveCursor(int i, int j){
+
+        return;
+    }
+
+    function void printString(String s){
+        return;
+    }*/
 
     method void dispose() {
         do nave.dispose();

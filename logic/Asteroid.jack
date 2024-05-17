@@ -6,14 +6,12 @@ class Asteroid{
     field int x, y;
     field int size;
     field int col;
-    field Coordenada coordinates;
 
     constructor Asteroid new(int px, int py, int sizeb) {
         let x = px;
         let y = py;
         let size = sizeb;
         let col = 1;
-        let coordinates = Coordenada.new(px, py);
 
         do draw();
         //do draw1();
@@ -28,21 +26,8 @@ class Asteroid{
         return;
     }
 
-     method Coordenada getPosition(){
-        return coordinates;
-    }
 
-
-    method int is_player_inside_me(int xPos, int yPos) {
-      if ((xPos>(x-32))&(xPos<(x+32))) {  // inside pipe region (left-right)
-         if ((yPos>y)|(yPos<(y-1))) { // inside pipe boundary (bottom-top)
-            return 1; // collision
-         }
-      }
-      return 0; // not in pipe region
-   }
-
-      method int getX(){
+    method int getX(){
         return x;
     }
     method int getY(){
@@ -63,6 +48,19 @@ class Asteroid{
             let col = col + 2;
         }
         return;
+    }
+
+    method int is_player_inside_me(int xPos, int yPos) {
+      if ((xPos>(x-32))&(xPos<(x+32))) {  // inside pipe region (left-right)
+         if ((yPos>y)|(yPos<(y-1))) { // inside pipe boundary (bottom-top)
+            return 1; // collision
+         }
+      }
+      return 0; // not in pipe region
+    }
+
+    method int convertPos(int xx, int yy){
+        return y*32;
     }
 
     method void draw() {
@@ -177,7 +175,6 @@ class Asteroid{
         return;
     }
 
-    
 
     method void draw1(){
         var int posConvert;
@@ -396,7 +393,5 @@ class Asteroid{
 
     }
     
-    method int convertPos(int xx, int yy){
-        return y*32;
-    }
+    
 }

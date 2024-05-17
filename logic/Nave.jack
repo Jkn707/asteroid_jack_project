@@ -3,14 +3,12 @@ class Nave {
     field int x, y;
     field int size;
     field boolean pointLeft;
-    field Coordenada coordinates;
     
     constructor Nave new(int px, int py, int sizeb) {
         let x = px;
         let y = py;
         let size = sizeb;
 
-        let coordinates = Coordenada.new(px, py);
         do draw();
 
         return this;
@@ -20,10 +18,6 @@ class Nave {
         do Memory.deAlloc(this);
         return;
     }
-
-    /*method Coordenada getPosition(){
-        return coordinates;
-    }*/
 
     method int getX(){
         return x;
@@ -69,7 +63,7 @@ class Nave {
         if ((y + size) < 254) {
             if(pointLeft){
                 do borrarLeft();  
-                let y = y+ 1; 
+                let y = y + 1; 
                 do drawLeft(); 
             }else{
                 do borrar(); 
@@ -100,6 +94,11 @@ class Nave {
             do draw(); 
         }
         return;
+    }
+
+    method int convertPos(int xx, int yy){
+        //return yy*32 + x/16;
+        return yy*32;
     }
 
     method void draw() {
@@ -215,10 +214,7 @@ class Nave {
         return;
     }
 
-    method int convertPos(int xx, int yy){
-        //return yy*32 + x/16;
-        return yy*32;
-    }
+    
 }
 
 
