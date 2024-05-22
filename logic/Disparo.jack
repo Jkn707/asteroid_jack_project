@@ -2,10 +2,13 @@ class Disparo {
 
     field int x, y;
     field int col;
+    field int dir;
 
-    constructor Disparo new(int px, int py){
+    constructor Disparo new(int px, int py, int direccion){
         let x = px;
         let y = py;
+        let dir = direccion;
+
         //let col = 1;
 
         do draw();
@@ -18,11 +21,31 @@ class Disparo {
     }
 
     method void move() {
-        //if (x > 1) {
+        if(dir = 3){
+            if(x < -4 ){ 
+                do borrar();
+                do Memory.deAlloc(this);
+                return;
+            }
+            do Sys.wait(10);
             do borrar(); 
             do draw();
             let x = x-1;
-        //}
+        } 
+        if(dir = 4){
+            if(x > 26 ){
+                do borrar();
+                do Memory.deAlloc(this);
+                return;
+            }
+            do Sys.wait(10);
+            do borrar(); 
+            do draw();
+            let x = x+1;
+        }
+        
+        
+
         return;
     }
 
@@ -46,7 +69,7 @@ class Disparo {
 
         let posConvert = convertPos();
         // Inicialmente poniendo el disparo en la mitad de la pantalla
-        let memAddress = 16384 + posConvert + x + 4;
+        let memAddress = 16384 + posConvert + x + 5;
         
         do Screen.setColor(true);
         do Memory.poke(memAddress, 3);
@@ -60,7 +83,11 @@ class Disparo {
         var int memAddress; 
 
         let posConvert = convertPos();
-        let memAddress = 16384 + posConvert + x + 5 ;
+        if(dir = 3){
+            let memAddress = 16384 + posConvert + x + 6 ;
+        }else{
+            let memAddress = 16384 + posConvert + x + 4 ;
+        }
 
         //let memAddress = 16384 + (x-1/16) ;
 

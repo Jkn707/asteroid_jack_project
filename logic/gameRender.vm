@@ -62,9 +62,10 @@ pop this 5
 push this 0
 call Nave.getY 1
 pop this 6
-push this 5
+push constant 10
 push this 6
-call Disparo.new 2
+push this 4
+call Disparo.new 3
 pop this 2
 label IF_FALSE1
 push local 0

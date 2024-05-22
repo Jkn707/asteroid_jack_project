@@ -34,10 +34,10 @@ class gameRender {
             if (tecla = 32) {  //Space -> Shoot
 
                 let is_shooting = true;
-                let coordX = nave.getX();
+                //let coordX = nave.getX();
                 let coordY = nave.getY();
                 
-                let disparo = Disparo.new(coordX, coordY);
+                let disparo = Disparo.new(10, coordY, direccion);
             }
             if (tecla = 81) {  //letra Q  QUIT
                 let exit = true;
