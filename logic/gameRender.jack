@@ -14,6 +14,7 @@ class gameRender {
         let nave = Nave.new(10, 50, 30);
         let asteroide = Asteroid.new(10, 10, 30);
         let direccion = 0;
+        let is_shooting = false;
         return this;
     }
 
@@ -21,83 +22,53 @@ class gameRender {
         var char tecla;
         var boolean exit;
         let exit = false;
-        
 
-        while (~exit){
-            while (tecla = 0) {
-                do asteroide.moveAsteroide();
-                if(is_shooting){
-                    do disparo.move();
+        while (~exit) {
+            let tecla = Keyboard.keyPressed();
+            if (~(tecla = 0)) {
+                if (tecla = 32) {  // Space -> Shoot
+                    let is_shooting = true;
+                    let coordY = nave.getY();
+                    let disparo = Disparo.new(10, coordY, direccion);
                 }
-                let tecla = Keyboard.keyPressed();
-            }
-            if (tecla = 32) {  //Space -> Shoot
-
-                let is_shooting = true;
-                //let coordX = nave.getX();
-                let coordY = nave.getY();
-                
-                let disparo = Disparo.new(10, coordY, direccion);
-            }
-            if (tecla = 81) {  //letra Q  QUIT
-                let exit = true;
-            }
-            if (tecla = 131) {  //letra up
-                let direccion = 1;
-            }
-            if (tecla = 133) {  //letra down
-                let direccion = 2;
-            }
-            if (tecla = 130) {  //letra left
-                let direccion = 3;
-            }
-            if (tecla = 132) {  //letra right
-                let direccion = 4;
-            }
-
-            while (~(tecla = 0)) {
-                
-                do nave.moverNave(direccion);
-                do asteroide.moveAsteroide();
-
-                if(is_shooting){
-                    do disparo.move();
-                    do Sys.wait(5);
+                if (tecla = 81) {  // letter Q -> QUIT
+                    let exit = true;
                 }
-
-                /*if(disparo){
-                    do disparo.move();
-                    let coordX = asteroide.getX();
-                    let coordY = asteroide.getY();
-
-                    let colision = asteroide.is_player_inside_me(coordX, coordY);
-
-                    if(colision = 1){
-                        do asteroide.dispose();
-                        let exit = true;
-                    }
-                }*/
-                
-
-                let tecla = Keyboard.keyPressed();
+                if (tecla = 131) {  // arrow up
+                    let direccion = 1;
+                }
+                if (tecla = 133) {  // arrow down
+                    let direccion = 2;
+                }
+                if (tecla = 130) {  // arrow left
+                    let direccion = 3;
+                }
+                if (tecla = 132) {  // arrow right
+                    let direccion = 4;
+                }
+            } else {
+                let direccion = 0;  // Stop moving if no key is pressed
             }
+
+            do nave.moverNave(direccion);
+            do asteroide.moveAsteroide();
+
+            if (is_shooting) {
+                do disparo.move();
+                do Sys.wait(5);
+            }
+
+            /* Handle collision detection if necessary */
         }
         return;
     }
 
-    /*function void moveCursor(int i, int j){
-
-        return;
-    }
-
-    function void printString(String s){
-        return;
-    }*/
-
     method void dispose() {
         do nave.dispose();
         do asteroide.dispose();
-        do disparo.dispose();
+        if (is_shooting) {
+            do disparo.dispose();
+        }
         do Memory.deAlloc(this);
         return;
     }
